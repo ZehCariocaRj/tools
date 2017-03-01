@@ -1,0 +1,25 @@
+#!/bin/bash
+clear
+echo -e "\033[1;37mScript com função de instalar o flood \033[1;32mT50\033[0m"
+echo -e "\n\033[1;37mInstalando GCC e Make...\033[0m"
+apt-get update >/dev/null 2>/dev/null
+apt-get install -y gcc >/dev/null 2>/dev/null
+apt-get install -y make >/dev/null 2>/dev/null
+apt-get install -y git >/dev/null 2>/dev/null
+yum update -y >/dev/null 2>/dev/null
+yum install -y gcc >/dev/null 2>/dev/null
+yum install -y make >/dev/null 2>/dev/null
+yum install -y git >/dev/null 2>/dev/null
+echo -e "\033[1;37mFazendo download e compilando t50\033[1;32m Aguarde...\033[0m"
+cd; rm -rf t50 2>/dev/null
+mkdir t50; cd t50
+wget https://downloads.sourceforge.net/project/t50/t50-5.6/t50-5.6.7.tar.gz -o /dev/null
+tar -xf t50-5.6.7.tar.gz
+cd t50-5.6.7-fix1
+./configure >/dev/null
+make -W Makefile >/dev/null
+cp src/t50 /bin/
+cd; rm -rf t50 t50_install 2>/dev/null
+echo -e "\033[1;37mInstalção compelata execute:\n\n\033[1;32mt50 alvo.example.com --flood --turbo --dport 80 -S -protocol TCP\033[0m"
+echo -e "\033[1;37m\nPara saber mais sobre o t50 e ataques suportados execute:\n\n\033[1;32mt50 --help\n\033[0m"
+
